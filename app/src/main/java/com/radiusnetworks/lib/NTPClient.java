@@ -74,7 +74,8 @@ public class NTPClient
             processResponse(info);
             client.close();
 
-            return listTime.get(i);
+            String res = listTime.get(i);
+            return res;
         }
         catch (SocketException e)
         {
