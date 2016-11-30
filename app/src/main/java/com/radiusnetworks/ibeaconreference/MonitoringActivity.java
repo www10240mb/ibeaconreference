@@ -199,17 +199,23 @@ public class MonitoringActivity extends Activity implements IBeaconConsumer {
 				{
 					if (showView)
 					{
-						String _UUID = arrayL.get(position).getProximityUuid();
-						int[] _INFO = new int[5];
+						final String _UUID = arrayL.get(position).getProximityUuid();
+						final int[] _INFO = new int[5];
 						_INFO[0] = arrayL.get(position).getMajor();
 						_INFO[1] = arrayL.get(position).getMinor();
 						_INFO[2] = arrayL.get(position).getProximity();
 						_INFO[3] = arrayL.get(position).getRssi();
 						_INFO[4] = arrayL.get(position).getTxPower();
-						double _INFO2 = arrayL.get(position).getAccuracy();
-						String _TIME = cNTP.getTime(4);
+						final double _INFO2 = arrayL.get(position).getAccuracy();
+						final String _TIME = null;
 
-						dbSQLite.add(dbSQLite.tableName_Beacon, _UUID, _INFO, _INFO2, _TIME);
+						Thread thread = new Thread(){
+							public void run(){
+								String _TIME = cNTP.getTime(4);
+								dbSQLite.add(dbSQLite.tableName_Beacon, _UUID, _INFO, _INFO2, _TIME);
+							}
+						};
+						thread.start();
 
 						holder.beacon_uuid.setText("UUID: " + arrayL.get(position).getProximityUuid());
 						holder.beacon_major.setText("Major: " + arrayL.get(position).getMajor());
