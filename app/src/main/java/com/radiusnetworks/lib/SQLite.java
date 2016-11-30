@@ -62,7 +62,7 @@ public class SQLite extends SQLiteOpenHelper implements Serializable
                         "_Proximity INT, " +
                         "_Rssi INT, " +
                         "_TxPower INT, " +
-                        "_arrayL DOUBLE" +
+                        "_arrayL DOUBLE, " +
                         "_dateT TEXT" +
                         " );";
 
